@@ -4,12 +4,14 @@ def logfileformatter(filepath):
         for line in data:
             if line.strip():  
                 parts = line.split()
-                identifier = parts[2] + "\t"
+                identifier = parts[2]
+                if(identifier == '1806E5F4x'):
+                    continue
                 hex_bytes = parts[6:]
-                grouped_bytes = ["".join((hex_bytes[i:i+2])[::-1])for i in range(0, len(hex_bytes), 2)]
+                grouped_bytes = ["".join((hex_bytes[i:i+2])[::-1]) for i in range(0, len(hex_bytes), 2)]
                 grouped_bytes.reverse()
                 formatted_hex = " ".join(grouped_bytes)
-                g.write(f"{identifier} {formatted_hex}\n")
+                g.write(f"{identifier} {formatted_hex}\n")    
 
 filepath = input("Enter File name/path: ")
 logfileformatter(filepath)
